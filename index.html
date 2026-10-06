@@ -1,124 +1,109 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Un regalo per Mattia</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Un regalo per Mattia</title>
 
-<style>
-    body {
-        margin: 0;
-        min-height: 100vh;
-        background: #ffffff;
-        font-family: Arial, Helvetica, sans-serif;
-        text-align: center;
-        overflow: hidden;
-    }
+    <style>
+        body {
+            margin: 0;
+            min-height: 100vh;
+            background: #ffffff;
+            font-family: Arial, Helvetica, sans-serif;
+            text-align: center;
+            overflow: hidden;
+        }
 
-    .container {
-        padding-top: 80px;
-    }
+        .container {
+            padding-top: 80px;
+        }
 
-    h1 {
-        font-size: 4rem;
-        color: #000;
-        margin-bottom: 10px;
-    }
+        h1 {
+            font-size: 4rem;
+            margin-bottom: 15px;
+            color: #000;
+        }
 
-    .firma {
-        font-size: 1.5rem;
-        color: #666;
-        margin-bottom: 30px;
-    }
+        .firma {
+            font-size: 1.5rem;
+            color: #666;
+            margin-bottom: 40px;
+        }
 
-    #message {
-        min-height: 40px;
-        font-size: 1.8rem;
-        font-weight: bold;
-        color: #e63946;
-        margin-bottom: 20px;
-    }
+        #message {
+            min-height: 50px;
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #e63946;
+        }
 
-    #giftBtn {
-        position: absolute;
-        left: 50%;
-        top: 55%;
-        transform: translate(-50%, -50%);
-        padding: 20px 50px;
-        font-size: 2rem;
-        font-weight: bold;
-        border: none;
-        border-radius: 12px;
-        background: #0078d4;
-        color: white;
-        cursor: pointer;
-    }
+        #giftBtn {
+            position: absolute;
+            left: 50%;
+            top: 55%;
+            transform: translate(-50%, -50%);
+            padding: 25px 50px;
+            font-size: 2rem;
+            font-weight: bold;
+            color: white;
+            background: #0078d4;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
 
-    #giftBtn:hover {
-        background: #005ea6;
-    }
-
-    #videoContainer {
-        display: none;
-        margin-top: 30px;
-    }
-
-    iframe {
-        width: 900px;
-        max-width: 90%;
-        height: 500px;
-        border: none;
-        border-radius: 12px;
-    }
-</style>
+        #giftBtn:hover {
+            background: #005ea6;
+        }
+    </style>
 </head>
-
 <body>
 
-<div class="container">
-    <h1>C'è un regalo per te Mattia B.</h1>
-    <div class="firma">da parte di Giacomo C.</div>
-
-    <div id="message"></div>
-
-    <div id="videoContainer">
-        https://www.youtube.com/embed/T1G4wNahcFA?autoplay=1
-        </iframe>
+    <div class="container">
+        <h1>C'è un regalo per te Mattia B.</h1>
+        <div class="firma">da parte di Giacomo C.</div>
+        <div id="message"></div>
     </div>
-</div>
 
-<button id="giftBtn">CLICCA QUI</button>
+    <button id="giftBtn">CLICCA QUI</button>
 
-<script>
-let tentativi = 0;
+    <script>
+        let tentativi = 0;
 
-const btn = document.getElementById("giftBtn");
-const message = document.getElementById("message");
-const videoContainer = document.getElementById("videoContainer");
+        const btn = document.getElementById("giftBtn");
+        const message = document.getElementById("message");
 
-btn.addEventListener("click", () => {
-    tentativi++;
+        btn.addEventListener("click", function () {
 
-    if (tentativi < 3) {
+            tentativi++;
 
-        message.textContent = "😜 Prova ancora una volta!";
+            if (tentativi < 3) {
 
-        const maxX = window.innerWidth - btn.offsetWidth;
-        const maxY = window.innerHeight - btn.offsetHeight;
+                message.textContent = "😜 Prova ancora una volta!";
 
-        btn.style.left = Math.random() * maxX + "px";
-        btn.style.top = Math.random() * maxY + "px";
-        btn.style.transform = "none";
+                const maxX = window.innerWidth - btn.offsetWidth - 20;
+                const maxY = window.innerHeight - btn.offsetHeight - 20;
 
-    } else {
+                btn.style.left = (Math.random() * maxX) + "px";
+                btn.style.top = (Math.random() * maxY) + "px";
+                btn.style.transform = "none";
 
-        btn.style.display = "none";
-        message.textContent = "🎁 Ecco il tuo regalo!";
-        videoContainer.style.display = "block";
+            } else {
 
-    }
-});
-</script>
+                message.textContent = "🎁 Hai trovato il regalo!";
+
+                window.open(
+                    "https://www.youtube.com/watch?v=T1G4wNahcFA",
+                    "_blank"
+                );
+
+                btn.style.display = "none";
+            }
+
+        });
+    </script>
 
 </body>
 </html>
